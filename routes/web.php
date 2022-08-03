@@ -13,12 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/about', function () {
-    return view('welcome');
-});
 
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/book',[BookController::class,'index']);
+Route::get('/books', [BookController::class,'index']);
+Route::get('/books/{id}',[BookController::class,'show']);
