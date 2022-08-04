@@ -10,7 +10,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::orderBy('id', 'ASC')
-            ->paginate(5);
+            ->paginate(2);
         return view('books.index', compact('books'));
     }
     public function show($id)
