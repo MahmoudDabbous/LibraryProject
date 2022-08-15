@@ -26,11 +26,14 @@
         <br>
 
         <label>Book Cover</label>
-        <input type="file" name="image" >
+        <input type="file" name="image">
         <br>
 
         <label>Book Description</label>
-        <textarea name="description" cols="30" rows="5">{{ old('description') ?? $book->description }}</textarea>
+        <br>
+        <textarea name="description" cols="30" rows="5">
+            {{ old('description') ?? $book->description }}
+        </textarea>
         <br>
 
         <label>Book Version</label>
@@ -39,6 +42,20 @@
             <option value="old">Old</option>
         </select>
         <br>
+
+        <label>Book Category</label>
+        <select name="category">
+            <option value="{{ $book->category->id }}" selected disabled hidden>
+                {{ $book->category->name }}
+            </option>
+            @foreach ($category as $item)
+                <option value="{{ $item->id }}">
+                    {{ $item->name }}
+                </option>
+            @endforeach
+        </select>
+        <br>
+
         <div>
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('books.index') }}" class="btn btn-secondary">Back</a>

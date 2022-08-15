@@ -8,6 +8,7 @@
     <ul>
         <li>{{ $book->price }}</li>
         <li>{{ $book->version }}</li>
+        <li>{{ $book->category->name }}</li>
     </ul>
     <div class="pt-5">
         <a href="{{ route('books.index') }}" class="btn btn-info">Back</a>

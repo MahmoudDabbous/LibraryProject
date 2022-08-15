@@ -26,7 +26,7 @@
         <br>
 
         <label>Book Cover</label>
-        <input type="file" name="image" >
+        <input type="file" name="image">
         <br>
 
         <label>Book Description</label>
@@ -37,6 +37,14 @@
         <select name="version">
             <option value="new">New</option>
             <option value="old">Old</option>
+        </select>
+        <br>
+
+        <label>Book Category</label>
+        <select name="category">
+            @foreach ($category as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+            @endforeach
         </select>
         <br>
         <div>
