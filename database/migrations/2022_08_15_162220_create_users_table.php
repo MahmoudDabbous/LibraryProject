@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('title',100);
-            $table->string('description');
-            $table->enum('version',['old','new'])->default('new');
-            $table->integer('price');
-            $table->string('image',100)->nullable();
+            $table->string('name',100);
+            $table->string('email');
+            $table->string('password');
+            $table->string('oAuth')->nullable();
+            $table->string('ApiOAuth')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('users');
     }
 };

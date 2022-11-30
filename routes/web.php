@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +44,14 @@ Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('ca
 Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
 
 Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+
+Route::get('/register',[AuthController::class,'register'])->name('Auth.register');
+Route::post('/handel/register',[AuthController::class,'handleRegister'])->name('Auth.register.handle');
+
+Route::get('/logout',[AuthController::class,'logout'])->name('Auth.logout');
+
+Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
+Route::post('/handel/login',[AuthController::class,'handleLogin'])->name('Auth.login.handle');
+
+Route::get('/lang/en', [LangController::class,'en'])->name('lang.en');
+Route::get('/lang/ar', [LangController::class,'ar'])->name('lang.ar');

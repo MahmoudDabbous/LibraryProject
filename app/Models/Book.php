@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['title', 'price', 'version', 'description','image','category_id'];
+    use HasFactory;
+    protected $fillable = ['title', 'price', 'version', 'description', 'image', 'category_id'];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class,'category_id','id');
+        return $this->belongsToMany(Category::class);
     }
 }
