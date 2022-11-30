@@ -43,19 +43,17 @@
         </select>
         <br>
 
-        <label>Book Category</label>
-        <select name="category">
-            <option value="{{ $book->category->id }}" selected disabled hidden>
-                {{ $book->category->name }}
-            </option>
+        <div class="my-2">
+            <label>Book Category</label>
             @foreach ($category as $item)
-                <option value="{{ $item->id }}">
+                <input class="form-check-input" name="categories_id[]" type="checkbox" value="{{ $item->id }}"
+                    id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
                     {{ $item->name }}
-                </option>
+                </label>
             @endforeach
-        </select>
-        <br>
 
+        </div>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('books.index') }}" class="btn btn-secondary">Back</a>

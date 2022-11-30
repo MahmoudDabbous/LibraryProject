@@ -26,7 +26,7 @@ class BookController extends Controller
         return view('books.add',compact('category'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request,Book $book)
     {
         $request->validate([
             'title' => 'required|string|min:5|max:100',
@@ -34,21 +34,22 @@ class BookController extends Controller
             'version' => 'nullable',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,PNG',
-            'category' => 'required'
+            'categories_id'=>'required',
+            'categories_id:*'=>'exists:categories,id'
         ]);
         $img = $request->file('image');
         $ext = $img->getClientOriginalExtension();
         $newImg = uniqid() . '.' . $ext;
 
         $img->move(public_path('uploads/books'), $newImg);
-        Book::create([
+        $book::create([
             'title' => $request->title,
             'description' => $request->description,
             'version' => $request->version,
             'price' => $request->price,
-            'image' => $newImg,
-            'category_id' => $request->category
+            'image' => $newImg
         ]);
+        $book->categories()->sync($request->categories_id);
 
         return redirect()->route('books.index');
     }
@@ -66,7 +67,9 @@ class BookController extends Controller
             'price' => 'required|integer|min:10|max:500',
             'version' => 'nullable',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,PNG'
+            'image'=>'nullable|image|mimes:jpg,jpeg,png,JPG,JPEG,PNG',
+            'categories_id'=>'required',
+            'categories_id:*'=>'exists:categories,id'
         ]);
         $book = Book::find($id);
         $img = $book->image;
@@ -88,6 +91,7 @@ class BookController extends Controller
             'price' => $request->price,
             'image' => $newImg
         ]);
+        $book->categories()->sync($request->categories_id);
         return redirect()->route('books.index');
     }
 

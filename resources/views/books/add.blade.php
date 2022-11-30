@@ -41,11 +41,10 @@
         <br>
 
         <label>Book Category</label>
-        <select name="category">
             @foreach ($category as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                <input type="checkbox" name="categories_id[]" value="{{$item->id}}" class="form-check-input">
+                <label >{{$item->name}}</label>
             @endforeach
-        </select>
         <br>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>

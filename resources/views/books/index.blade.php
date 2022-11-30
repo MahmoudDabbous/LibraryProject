@@ -9,7 +9,9 @@
         <p>{{ $item->description }}</p>
         <small>{{ $item->price }}</small>
         <br>
-        <small>{{ $item->category->name }}</small>
+        @foreach ($item->categories as $item)
+            <small><a href="{{ route('categories.category', [$item->id]) }}">{{ $item->name }}</a></small>
+        @endforeach
         <div>
             <a href="{{ route('books.edit', [$item->id]) }}" class="btn btn-primary">Edit</a>
             <a href="{{ route('books.delete', [$item->id]) }}" class="btn btn-danger">Delete</a>
