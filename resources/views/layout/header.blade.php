@@ -8,17 +8,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('index') }}">@lang('site.home')</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('index') }}">{{ __('site.home') }}</a>
                 </li>
                 <x-navbar></x-navbar>
         </div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Auth.login') }}">@lang('site.login')</a>
+                    <a class="nav-link" href="{{ route('Auth.login') }}">{{ __('site.login') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Auth.register') }}">@lang('site.register')</a>
+                    <a class="nav-link" href="{{ route('Auth.register') }}">{{ __('site.register') }}</a>
                 </li>
             @endguest
 
@@ -27,14 +27,14 @@
                     <a class="nav-link">Welcome, {{ Auth::user()->name }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Auth.logout') }}">@lang('site.logout')</a>
+                    <a class="nav-link" href="{{ route('Auth.logout') }}">{{ __('site.logout') }}</a>
                 </li>
             @endauth
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    @lang('site.changelang')
+                    {{ __('site.changelang') }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{{ route('lang.en') }}">en</a></li>

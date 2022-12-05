@@ -12,13 +12,13 @@ class LangController extends Controller
     {
         App::setlocale('en');
         Session::put('lang','en');
-        return back();
+        return redirect()->back();
     }
 
     public function ar()
     {
         App::setLocale('ar');
         Session::put('lang','ar');
-        return back();
+        return redirect()->back();
     }
 }
