@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\RegisterUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -29,8 +27,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        Mail::to($login->email)
-            ->send(new RegisterUser());
+
         Auth::login($login);
 
         return redirect()->route('index');
