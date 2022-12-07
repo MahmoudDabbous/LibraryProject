@@ -34,7 +34,7 @@ class BookController extends Controller
             'version' => 'nullable',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,PNG',
-            'categories_id' => 'required',
+            'categories_id' => 'nullable',
             'categories_id:*' => 'exists:categories,id'
         ]);
 
@@ -69,7 +69,7 @@ class BookController extends Controller
     {
         $request->validate([
             'title' => 'required|string|min:5|max:100',
-            'price' => 'required|integer|min:10|max:500',
+            'price' => 'required|integer|min:10|max:1000',
             'version' => 'nullable',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,JPG,JPEG,PNG',

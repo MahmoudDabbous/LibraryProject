@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Category | {{ $category->id }}
+    Category | {{ $category->name }}
 @endsection
 @section('content')
     <h1>{{ $category->name }}</h1>

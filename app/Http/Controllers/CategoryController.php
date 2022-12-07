@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,11 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
+
+        if ($category->books() == null) {
+            return redirect()->route('categories.index')->withErrors('Can\' be deleted , It contains one or more book.');
+        }
+
         $category->delete();
         return redirect()->route('categories.index');
     }
