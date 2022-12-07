@@ -14,15 +14,16 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function read($id)
+    public function read(Category $category)
     {
-        $category = Category::findOrFail($id);
         return view('categories.show', compact('category'));
     }
+
     public function add()
     {
         return view('categories.add');
     }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -35,27 +36,25 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
         return view('categories.edit', compact('category'));
     }
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Category $category)
     {
         $request->validate([
             'name' => 'required|string|min:5|max:100',
         ]);
-        $Category = Category::find($id);
-        $Category->update([
+        $category->update([
             'name' => $request->name
         ]);
         return redirect()->route('categories.index');
     }
 
-    public function delete($id)
+    public function delete(Category $category)
     {
-        $Category = Category::findOrFail($id);
-        $Category->delete();
+        $category->delete();
         return redirect()->route('categories.index');
     }
 }

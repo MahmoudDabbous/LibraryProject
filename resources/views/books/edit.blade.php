@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('books.update', [$book->id]) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('books.update', [$book]) }}" enctype="multipart/form-data">
         @csrf
         <label>
             Book Name

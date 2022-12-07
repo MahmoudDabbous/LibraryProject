@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('categories.update', [$category->id]) }}">
+    <form method="post" action="{{ route('categories.update', [$category]) }}">
         @csrf
         <label>
             Category Name

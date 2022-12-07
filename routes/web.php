@@ -48,19 +48,19 @@ Route::middleware('lang')->group(function () {
         Route::get('/books/add', [BookController::class, 'add'])->name('books.add');
         Route::post('/books/create', [BookController::class, 'create'])->name('books.create');
 
-        Route::get('/books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
-        Route::post('/books/update/{id}', [BookController::class, 'update'])->name('books.update');
+        Route::get('/books/edit/{book}', [BookController::class, 'edit'])->name('books.edit');
+        Route::post('/books/update/{book}', [BookController::class, 'update'])->name('books.update');
 
-        Route::get('/books/delete/{id}', [BookController::class, 'delete'])->name('books.delete');
+        Route::get('/books/delete/{book}', [BookController::class, 'delete'])->name('books.delete');
 
         //Categories
         Route::get('/categories/add', [CategoryController::class, 'add'])->name('categories.add');
         Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 
-        Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-        Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/category/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
-        Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+        Route::get('/category/delete/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
 
     });
 });
