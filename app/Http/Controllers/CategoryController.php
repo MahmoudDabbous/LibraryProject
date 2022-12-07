@@ -17,7 +17,8 @@ class CategoryController extends Controller
 
     public function read(Category $category)
     {
-        return view('categories.show', compact('category'));
+        $books = $category->books()->get();
+        return view('categories.show', compact('category','books'));
     }
 
     public function add()

@@ -24,11 +24,11 @@ Route::middleware('lang')->group(function () {
 
     // Book
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
-    Route::get('/books/show/{id}', [BookController::class, 'read'])->name('books.book');
+    Route::get('/books/show/{book}', [BookController::class, 'read'])->name('books.book');
 
     // Category
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-    Route::get('/categories/show/{id}', [CategoryController::class, 'read'])->name('categories.category');
+    Route::get('/categories/show/{category}', [CategoryController::class, 'read'])->name('categories.category');
 
     //Guests Only
     Route::middleware('is.guest')->group(function () {

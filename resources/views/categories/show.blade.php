@@ -5,8 +5,8 @@
 @section('content')
     <h1>{{ $category->name }}</h1>
     <ul>
-        @foreach ($category->books as $item)
-            <li>{{ $item->title }}</li>
+        @foreach ($books as $book)
+            <li>{{$book->title}}</li>
         @endforeach
     </ul>
     <div class="pt-5">
