@@ -11,16 +11,19 @@
             </ul>
         </div>
     @endif
-    <div class="my-3">
-        <a class="btn btn-primary" href="{{ route('categories.add') }}">ADD</a>
-    </div>
+    @auth
+        <div class="my-3">
+            <a class="btn btn-primary" href="{{ route('categories.add') }}">ADD</a>
+        </div>
+    @endauth
     @foreach ($categories as $item)
         <h3><a href="{{ route('categories.category', [$item->id]) }}">{{ $item->name }}</a></h3>
-
-        <div>
-            <a href="{{ route('categories.edit', [$item->id]) }}" class="btn btn-primary">Edit</a>
-            <a href="{{ route('categories.delete', [$item->id]) }}" class="btn btn-danger">Delete</a>
-        </div>
+        @auth
+            <div>
+                <a href="{{ route('categories.edit', [$item->id]) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('categories.delete', [$item->id]) }}" class="btn btn-danger">Delete</a>
+            </div>
+        @endauth
         <hr>
     @endforeach
     {{ $categories->links('pagination::bootstrap-5') }}

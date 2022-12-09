@@ -12,7 +12,13 @@
             <li>{{ $item->name }}</li>
         @endforeach
     </ul>
-    <div class="pt-5">
-        <a href="{{ route('books.index') }}" class="btn btn-info">Back</a>
-    </div>
+    @auth
+        <div class="pt-5">
+            <div>
+                <a href="{{ route('books.edit', [$book]) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('books.delete', [$book]) }}" class="btn btn-danger">Delete</a>
+                <a href="{{ route('books.index') }}" class="btn btn-info">Back</a>
+            </div>
+        </div>
+    @endauth
 @endsection

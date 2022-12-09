@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -46,15 +47,15 @@ class BookController extends Controller
         } else {
             $newImg = null;
         }
-
-        $book::create([
+        $id = $book->insertGetId([
             'title' => $request->title,
             'description' => $request->description,
             'version' => $request->version,
             'price' => $request->price,
             'image' => $newImg
         ]);
-        $book->categories()->sync($request->categories_id);
+        $b = $book::find($id);
+        $b->categories()->sync($request->categories_id);
 
         return redirect()->route('books.index');
     }

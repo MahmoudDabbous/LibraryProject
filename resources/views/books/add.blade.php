@@ -1,16 +1,15 @@
 @extends('layout.app')
 @section('title', 'Add New Book')
 @section('content')
-    <div class="py-5">
-        @if ($errors->any())
+    @if ($errors->any())
+        <div class="py-5">
             <ul>
                 @foreach ($errors->all() as $msg)
                     <li>{{ $msg }}</li>
                 @endforeach
             </ul>
-        @endif
-    </div>
-
+        </div>
+    @endif
     <form method="post" action="{{ route('books.create') }}" enctype="multipart/form-data">
         @csrf
         <label>
@@ -41,10 +40,10 @@
         <br>
 
         <label>Book Category</label>
-            @foreach ($category as $item)
-                <input type="checkbox" name="categories_id[]" value="{{$item->id}}" class="form-check-input">
-                <label >{{$item->name}}</label>
-            @endforeach
+        @foreach ($category as $item)
+            <input type="checkbox" name="categories_id[]" value="{{ $item->id }}" class="form-check-input">
+            <label>{{ $item->name }}</label>
+        @endforeach
         <br>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>

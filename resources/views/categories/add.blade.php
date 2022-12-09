@@ -1,15 +1,15 @@
 @extends('layout.app')
 @section('title', 'Add New Category')
 @section('content')
-    <div class="py-5">
-        @if ($errors->any())
+    @if ($errors->any())
+        <div class="py-5">
             <ul>
                 @foreach ($errors->all() as $msg)
                     <li>{{ $msg }}</li>
                 @endforeach
             </ul>
-        @endif
-    </div>
+        </div>
+    @endif
 
     <form method="post" action="{{ route('categories.create') }}">
         @csrf
@@ -17,7 +17,7 @@
             Category
         </label>
         <input type="text" name="name">
-        
+
         <br>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>

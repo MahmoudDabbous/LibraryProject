@@ -1,21 +1,34 @@
 @extends('layout.app')
 @section('title', 'Books')
 @section('content')
-    <div class="my-3">
-        <a class="btn btn-primary" href="{{ route('books.add') }}">ADD</a>
-    </div>
-    @foreach ($books as $item)
-        <h3><a href="{{ route('books.book', [$item->id]) }}">{{ $item->title }}</a></h3>
-        <p>{{ $item->description }}</p>
-        <small>{{ $item->price }}</small>
-        <br>
-        @foreach ($item->categories as $item)
-            <small><a href="{{ route('categories.category', [$item->id]) }}">{{ $item->name }}</a></small>
-        @endforeach
-        <div>
-            <a href="{{ route('books.edit', [$item->id]) }}" class="btn btn-primary">Edit</a>
-            <a href="{{ route('books.delete', [$item->id]) }}" class="btn btn-danger">Delete</a>
+    @if ($errors->any())
+        <div class="py-5">
+            <ul>
+                @foreach ($errors->all() as $msg)
+                    <li>{{ $msg }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
+    @auth
+        <div class="my-3">
+            <a class="btn btn-primary" href="{{ route('books.add') }}">ADD</a>
+        </div>
+    @endauth
+    @foreach ($books as $book)
+        <h3><a href="{{ route('books.book', [$book]) }}">{{ $book->title }}</a></h3>
+        <p>{{ $book->description }}</p>
+        <small>{{ $book->price }}</small>
+        <br>
+        @foreach ($book->categories as $category)
+            <small><a href="{{ route('categories.category', [$category]) }}">{{ $category->name }}</a></small>
+        @endforeach
+        @auth
+            <div>
+                <a href="{{ route('books.edit', [$book]) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('books.delete', [$book]) }}" class="btn btn-danger">Delete</a>
+            </div>
+        @endauth
         <hr>
     @endforeach
     {{ $books->links('pagination::bootstrap-5') }}
